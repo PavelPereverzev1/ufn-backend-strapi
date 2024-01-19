@@ -839,7 +839,8 @@ export interface ApiVideoVideo extends Schema.CollectionType {
   attributes: {
     title: Attribute.String;
     description: Attribute.Text;
-    video_url: Attribute.String;
+    video_embed_url: Attribute.String;
+    video_ext_url: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

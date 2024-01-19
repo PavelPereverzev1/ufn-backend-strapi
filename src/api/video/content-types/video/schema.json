@@ -18,7 +18,10 @@
     "description": {
       "type": "text"
     },
-    "video_url": {
+    "video_embed_url": {
+      "type": "string"
+    },
+    "video_ext_url": {
       "type": "string"
     }
   }
