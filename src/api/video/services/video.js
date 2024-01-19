@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * story service
+ * video service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::story.story');
+module.exports = createCoreService('api::video.video');
