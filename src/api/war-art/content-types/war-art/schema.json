@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "war_arts",
+  "info": {
+    "singularName": "war-art",
+    "pluralName": "war-arts",
+    "displayName": "War art",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image_url": {
+      "type": "string"
+    },
+    "img": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

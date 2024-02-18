@@ -768,30 +768,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiArtArt extends Schema.CollectionType {
-  collectionName: 'arts';
-  info: {
-    singularName: 'art';
-    pluralName: 'arts';
-    displayName: 'war_art';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    photo_url: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::art.art', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::art.art', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 export interface ApiArticleArticle extends Schema.CollectionType {
   collectionName: 'articles';
   info: {
@@ -859,6 +835,38 @@ export interface ApiVideoVideo extends Schema.CollectionType {
   };
 }
 
+export interface ApiWarArtWarArt extends Schema.CollectionType {
+  collectionName: 'war_arts';
+  info: {
+    singularName: 'war-art';
+    pluralName: 'war-arts';
+    displayName: 'War art';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    image_url: Attribute.String;
+    img: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::war-art.war-art',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::war-art.war-art',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -877,9 +885,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::art.art': ApiArtArt;
       'api::article.article': ApiArticleArticle;
       'api::video.video': ApiVideoVideo;
+      'api::war-art.war-art': ApiWarArtWarArt;
     }
   }
 }
