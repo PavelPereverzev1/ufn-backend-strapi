@@ -4,7 +4,7 @@
   "info": {
     "singularName": "article",
     "pluralName": "articles",
-    "displayName": "article",
+    "displayName": "Article",
     "description": ""
   },
   "options": {
@@ -13,13 +13,27 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
-    "author": {
-      "type": "string"
+    "article_text": {
+      "type": "blocks",
+      "required": true
     },
-    "content": {
-      "type": "richtext"
+    "contributer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::contributer.contributer"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "image_url": {
+      "type": "string"
     }
   }
 }

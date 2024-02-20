@@ -773,16 +773,22 @@ export interface ApiArticleArticle extends Schema.CollectionType {
   info: {
     singularName: 'article';
     pluralName: 'articles';
-    displayName: 'article';
+    displayName: 'Article';
     description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
-    author: Attribute.String;
-    content: Attribute.RichText;
+    title: Attribute.String & Attribute.Required;
+    article_text: Attribute.Blocks & Attribute.Required;
+    contributer: Attribute.Relation<
+      'api::article.article',
+      'oneToOne',
+      'api::contributer.contributer'
+    >;
+    image: Attribute.Media;
+    image_url: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -801,12 +807,75 @@ export interface ApiArticleArticle extends Schema.CollectionType {
   };
 }
 
+export interface ApiContributerContributer extends Schema.CollectionType {
+  collectionName: 'contributers';
+  info: {
+    singularName: 'contributer';
+    pluralName: 'contributers';
+    displayName: 'Contributer';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    info: Attribute.Text;
+    article: Attribute.Relation<
+      'api::contributer.contributer',
+      'oneToOne',
+      'api::article.article'
+    >;
+    photo: Attribute.Media;
+    photo_url: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contributer.contributer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contributer.contributer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMemeMeme extends Schema.CollectionType {
+  collectionName: 'memes';
+  info: {
+    singularName: 'meme';
+    pluralName: 'memes';
+    displayName: 'Meme';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    image: Attribute.Media;
+    image_url: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::meme.meme', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::meme.meme', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiVideoVideo extends Schema.CollectionType {
   collectionName: 'videos';
   info: {
     singularName: 'video';
     pluralName: 'videos';
-    displayName: 'video';
+    displayName: 'Video';
     description: '';
   };
   options: {
@@ -886,6 +955,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::article.article': ApiArticleArticle;
+      'api::contributer.contributer': ApiContributerContributer;
+      'api::meme.meme': ApiMemeMeme;
       'api::video.video': ApiVideoVideo;
       'api::war-art.war-art': ApiWarArtWarArt;
     }

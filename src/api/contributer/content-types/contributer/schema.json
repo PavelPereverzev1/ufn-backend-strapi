@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contributers",
+  "info": {
+    "singularName": "contributer",
+    "pluralName": "contributers",
+    "displayName": "Contributer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "info": {
+      "type": "text"
+    },
+    "article": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::article.article"
+    },
+    "photo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "photo_url": {
+      "type": "string"
+    }
+  }
+}
