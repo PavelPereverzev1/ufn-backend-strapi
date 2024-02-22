@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "main_videos",
+  "info": {
+    "singularName": "main-video",
+    "pluralName": "main-videos",
+    "displayName": "Main Video"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "video": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::video.video"
+    }
+  }
+}

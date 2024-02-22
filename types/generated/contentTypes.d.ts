@@ -819,7 +819,7 @@ export interface ApiContributerContributer extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    Name: Attribute.String;
+    name: Attribute.String;
     info: Attribute.Text;
     article: Attribute.Relation<
       'api::contributer.contributer',
@@ -828,6 +828,7 @@ export interface ApiContributerContributer extends Schema.CollectionType {
     >;
     photo: Attribute.Media;
     photo_url: Attribute.String;
+    socials: Attribute.Component<'socials.socials'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -839,6 +840,70 @@ export interface ApiContributerContributer extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::contributer.contributer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiContributionContribution extends Schema.CollectionType {
+  collectionName: 'contributions';
+  info: {
+    singularName: 'contribution';
+    pluralName: 'contributions';
+    displayName: 'Contribution';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contribution.contribution',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contribution.contribution',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMainVideoMainVideo extends Schema.SingleType {
+  collectionName: 'main_videos';
+  info: {
+    singularName: 'main-video';
+    pluralName: 'main-videos';
+    displayName: 'Main Video';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    video: Attribute.Relation<
+      'api::main-video.main-video',
+      'oneToOne',
+      'api::video.video'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::main-video.main-video',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::main-video.main-video',
       'oneToOne',
       'admin::user'
     > &
@@ -904,6 +969,40 @@ export interface ApiVideoVideo extends Schema.CollectionType {
   };
 }
 
+export interface ApiVolunteerVolunteer extends Schema.CollectionType {
+  collectionName: 'volunteers';
+  info: {
+    singularName: 'volunteer';
+    pluralName: 'volunteers';
+    displayName: 'Volunteer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    site_link: Attribute.String;
+    logo: Attribute.Media;
+    logo_link: Attribute.String;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::volunteer.volunteer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::volunteer.volunteer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiWarArtWarArt extends Schema.CollectionType {
   collectionName: 'war_arts';
   info: {
@@ -956,8 +1055,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::article.article': ApiArticleArticle;
       'api::contributer.contributer': ApiContributerContributer;
+      'api::contribution.contribution': ApiContributionContribution;
+      'api::main-video.main-video': ApiMainVideoMainVideo;
       'api::meme.meme': ApiMemeMeme;
       'api::video.video': ApiVideoVideo;
+      'api::volunteer.volunteer': ApiVolunteerVolunteer;
       'api::war-art.war-art': ApiWarArtWarArt;
     }
   }
