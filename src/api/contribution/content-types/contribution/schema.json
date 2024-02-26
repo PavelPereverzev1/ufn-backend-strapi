@@ -4,7 +4,8 @@
   "info": {
     "singularName": "contribution",
     "pluralName": "contributions",
-    "displayName": "Contribution"
+    "displayName": "Contribution",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,6 +13,32 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "in progress",
+        "complete"
+      ]
+    },
+    "description": {
+      "type": "text"
+    },
+    "donatation_link": {
+      "type": "string"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "image_url": {
       "type": "string"
     }
   }

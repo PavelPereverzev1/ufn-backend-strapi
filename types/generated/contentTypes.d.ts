@@ -853,12 +853,18 @@ export interface ApiContributionContribution extends Schema.CollectionType {
     singularName: 'contribution';
     pluralName: 'contributions';
     displayName: 'Contribution';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     name: Attribute.String;
+    status: Attribute.Enumeration<['in progress', 'complete']>;
+    description: Attribute.Text;
+    donatation_link: Attribute.String;
+    image: Attribute.Media;
+    image_url: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
